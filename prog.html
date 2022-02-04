@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>prog.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<ul>
+<li><a href="#general-points-of-attention">General points of attention</a>
+<ul>
+<li><a href="#features-of-oop">Features of OOP</a></li>
+<li><a href="#modular-programs">Modular programs</a>
+<ul>
+<li><a href="#encapsualtion">Encapsualtion</a>
+<ul>
+<li><a href="#what-is-it">What is it?</a></li>
+<li><a href="#why-is-it-useful">Why is it useful?</a></li>
+</ul>
+</li>
+<li><a href="#adt">ADT</a>
+<ul>
+<li><a href="#what-is-it-1">What is it?</a></li>
+<li><a href="#why-is-it-useful-1">Why is it useful?</a></li>
+<li><a href="#how-to-implement-it">How to implement it?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#tdd">TDD</a>
+<ul>
+<li><a href="#steps">Steps</a></li>
+<li><a href="#why-write-test-cases-before-implementing-software">Why write test cases before implementing software?</a></li>
+</ul>
+</li>
+<li><a href="#robustness">Robustness</a>
+<ul>
+<li><a href="#how-to-test-for-robustness">How to test for robustness?</a></li>
+<li><a href="#exceptions">Exceptions</a>
+<ul>
+<li><a href="#why-throw-exceptions-instead-of-returning-a-special-value">Why throw exceptions instead of returning a special value?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5-12-major-principles">5 1/2 Major principles</a>
+<ul>
+<li><a href="#srp-single-responsibility-principle">SRP: Single Responsibility Principle</a></li>
+<li><a href="#ocp-open-closed-principle">OCP: Open Closed Principle</a></li>
+<li><a href="#lsp-liskov-substitution-principle">LSP: Liskov Substitution Principle</a></li>
+<li><a href="#isp-interface-segregation-principle">ISP: Interface Segregation Principle</a></li>
+<li><a href="#dip-dependency-inversion-principle">DIP: Dependency Inversion Principle</a></li>
+<li><a href="#dry-dont-repeat-yourself">DRY: Don't Repeat Yourself</a></li>
+</ul>
+</li>
+<li><a href="#mutable-vs-immutable-classes">Mutable vs Immutable classes</a></li>
+<li><a href="#nested-classes">Nested classes</a>
+<ul>
+<li><a href="#inner-classes">Inner classes</a></li>
+</ul>
+</li>
+<li><a href="#generic-classes">Generic classes</a></li>
+<li><a href="#swingworker">SwingWorker</a>
+<ul>
+<li><a href="#purpose">Purpose</a></li>
+<li><a href="#the-main-steps">The main steps</a></li>
+<li><a href="#related-patterns">Related patterns</a></li>
+</ul>
+</li>
+<li><a href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a href="#design-patterns">Design Patterns</a>
+<ul>
+<li><a href="#iterator">Iterator</a>
+<ul>
+<li><a href="#intent">Intent</a></li>
+<li><a href="#solution">Solution</a>
+<ul>
+<li><a href="#iteratore">Iterator&lt;E&gt;</a></li>
+<li><a href="#iterablee">Iterable&lt;E&gt;</a></li>
+</ul>
+</li>
+<li><a href="#discussion">Discussion</a>
+<ul>
+<li><a href="#pros">Pros</a></li>
+<li><a href="#cons">Cons</a></li>
+</ul>
+</li>
+<li><a href="#related-patterns-1">Related Patterns</a></li>
+</ul>
+</li>
+<li><a href="#strategy">Strategy</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#intent-1">Intent</a></li>
+<li><a href="#solution-1">Solution</a></li>
+<li><a href="#discussion-1">Discussion</a>
+<ul>
+<li><a href="#anti-pattern">Anti-pattern</a></li>
+<li><a href="#pros-1">Pros</a></li>
+<li><a href="#cons-1">Cons</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#observer">Observer</a>
+<ul>
+<li><a href="#intent-2">Intent</a></li>
+<li><a href="#solution-2">Solution</a></li>
+<li><a href="#discussion-2">Discussion</a>
+<ul>
+<li><a href="#pros-2">Pros</a></li>
+<li><a href="#cons-2">Cons</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#command">Command</a>
+<ul>
+<li><a href="#introduction-1">Introduction</a></li>
+<li><a href="#intent-3">Intent</a></li>
+<li><a href="#structure">Structure</a></li>
+<li><a href="#discussion-3">Discussion</a>
+<ul>
+<li><a href="#applicability">Applicability</a></li>
+<li><a href="#pros-3">Pros</a></li>
+<li><a href="#cons-3">Cons</a></li>
+<li><a href="#related-patterns-2">Related patterns</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#singleton">Singleton</a>
+<ul>
+<li><a href="#intent-4">Intent</a></li>
+<li><a href="#solution-3">Solution</a></li>
+<li><a href="#structure-1">Structure</a></li>
+<li><a href="#discussion-4">Discussion</a>
+<ul>
+<li><a href="#applicability-1">Applicability</a></li>
+<li><a href="#pros-4">Pros</a></li>
+<li><a href="#cons-4">Cons</a></li>
+</ul>
+</li>
+<li><a href="#related-patterns-3">Related patterns</a></li>
+</ul>
+</li>
+<li><a href="#decorator">Decorator</a>
+<ul>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#intent-5">Intent</a></li>
+<li><a href="#solution-4">Solution</a></li>
+<li><a href="#structure-2">Structure</a></li>
+<li><a href="#discussion-5">Discussion</a>
+<ul>
+<li><a href="#applicability-2">Applicability</a></li>
+<li><a href="#pros-5">Pros</a></li>
+<li><a href="#cons-5">Cons</a></li>
+</ul>
+</li>
+<li><a href="#related-patterns-4">Related Patterns</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="general-points-of-attention">General points of attention</h1>
+<h2 id="features-of-oop">Features of OOP</h2>
+<ul>
+<li>Inheritance</li>
+<li>Encapsulation</li>
+<li>Polymorphism
+<ul>
+<li>creation of items that have similar behavior</li>
+</ul>
+</li>
+<li>Method Overriding
+<ul>
+<li>When a child class overrides a parent class’s method, the child class might offer an alternative implementation.</li>
+</ul>
+</li>
+<li>Method Overloading
+<ul>
+<li>Although two methods or functions may have the same name, the number of arguments given into the method call may vary.</li>
+</ul>
+</li>
+<li>Dynamic dispatch
+<ul>
+<li>process of selecting which implementation of a <code>polymorphic operation</code> (method or function) to call at run time.</li>
+</ul>
+</li>
+</ul>
+<h2 id="modular-programs">Modular programs</h2>
+<p><strong>List of advantages:</strong></p>
+<ul>
+<li>enable solution of more complex problems</li>
+<li>facilitate parallel construction by a team</li>
+<li>improves ability to plan work and track progress</li>
+<li>improves verifiability
+<ul>
+<li>allows early release of design</li>
+<li>allows unit testing of separate components</li>
+<li>allows stepwise integration</li>
+</ul>
+</li>
+<li>improves maintainability -&gt; changes affect few components</li>
+<li>improves prosiblity for reuse</li>
+</ul>
+<h3 id="encapsualtion">Encapsualtion</h3>
+<h4 id="what-is-it">What is it?</h4>
+<ul>
+<li>hiding the representation of data and implementation of operations</li>
+</ul>
+<h4 id="why-is-it-useful">Why is it useful?</h4>
+<ul>
+<li>it enables one to abstract from data, reduce dependencies and decrease coupling</li>
+<li>changes to implementation do not affect ussage occurences</li>
+</ul>
+<h3 id="adt">ADT</h3>
+<h4 id="what-is-it">What is it?</h4>
+<ul>
+<li>a type whose specifiaction and usage abstracts from implementation details</li>
+<li>makes available a set of abstract values together with operations on those values</li>
+</ul>
+<h4 id="why-is-it-useful">Why is it useful?</h4>
+<ul>
+<li>implementation code of an ADT can be changed without affecting client code</li>
+<li>it limits the consequences of making changes to implementations</li>
+<li>makes it easier to have multiple implementations of the same ADT</li>
+</ul>
+<h4 id="how-to-implement-it">How to implement it?</h4>
+<p><strong>Code</strong>:</p>
+<ul>
+<li>a data representation (in terms of concrete types or other ADTS)</li>
+<li>Implementations of all operations</li>
+</ul>
+<p><strong>Documentation</strong>:</p>
+<ul>
+<li>representation invariant, stating the condition under which the data representation is valid (when it represents an abstract value)</li>
+<li><code>abstraction function</code>, mapping a data representation to the corresponding abstract value</li>
+</ul>
+<blockquote>
+<p>Representation invariant (short: rep invariant) is condition to be satisfied by the instance variables, in order to make sense as a representation of an abstract value</p>
+</blockquote>
+<blockquote>
+<p>Abstraction function maps each representation that satisfies the rep invariant to the represented abstract value. Can be implemented (in a way) in method String toString().</p>
+</blockquote>
+<hr>
+<ul>
+<li>implementation deals with the choice of data representation and method implementations</li>
+<li>data representation in terms of instance variables representing abstract values</li>
+<li>method implementation adhering to contract</li>
+<li>pre and postcondition must be reinterpreted in terms of the data representation, using AF.</li>
+<li>rep invariant as additional precondition, and additional
+postcondition for commands</li>
+</ul>
+<h2 id="tdd">TDD</h2>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Analyze requirements</li>
+<li>Slecet requirement to develop</li>
+<li>Specify class/methods informally: javadoc summary</li>
+<li>Specify formally: model with invariants, headers and contracts</li>
+<li>Implement rigorous tests, in unit test class</li>
+<li>Choose data rep and implement class methods</li>
+<li>Test implementation and fix defects</li>
+<li>Repeat</li>
+</ol>
+<h3 id="why-write-test-cases-before-implementing-software">Why write test cases before implementing software?</h3>
+<ul>
+<li>test cases help <strong>stabilize interfaces and contracts</strong> before implementing them
+<ul>
+<li>changes in interfaces and contracts lead to changes in implementation -&gt; it's better to have those properly done first</li>
+</ul>
+</li>
+<li>encourages <strong>analysis of interfaces and  contracts</strong> before implementing them -&gt; you get familiar with the module's interface</li>
+<li>allows to focus on <strong>implementing the module and getting it to work</strong> without being interrupted by test case development</li>
+</ul>
+<h2 id="robustness">Robustness</h2>
+<p>A method is called <code>robust</code> when its behaviour under violated precondition is well-specified in its contracts</p>
+<ul>
+<li>With explicit signaling, it quickly becomes clear the problem is located outside the method</li>
+</ul>
+<h3 id="how-to-test-for-robustness">How to test for robustness?</h3>
+<ol>
+<li>Call the method under test in a <code>try</code> block so that precondition is violated</li>
+<li>If the next statement is reached (no exception thrown), the test <code>fails</code></li>
+<li>Catch exception thrown in a <code>catch</code> block</li>
+<li>If expected exception was thrown, pass the test, fail otherwise</li>
+</ol>
+<h3 id="exceptions">Exceptions</h3>
+<h4 id="why-throw-exceptions-instead-of-returning-a-special-value">Why throw exceptions instead of returning a special value?</h4>
+<ul>
+<li>if all values can be returned under normal circumstances, it would be impossible to return a special value</li>
+<li>client code needs to check for the special value even if it only wants to propagate the signal to a higher level</li>
+<li>programmer might forget to check the return value, whereas exepctions <strong>cannot be ignored easily</strong></li>
+<li>exceptions can carry important additional information</li>
+<li>You cannot return an error code in a void method, but you can throw an exception</li>
+<li>Thrown exceptions in Java interrupt the regular control flow, whereas special return values do not</li>
+</ul>
+<h2 id="5-12-major-principles">5 1/2 Major principles</h2>
+<h3 id="srp-single-responsibility-principle">SRP: Single Responsibility Principle</h3>
+<ul>
+<li>each functin should solve a single well-defined problem</li>
+</ul>
+<h3 id="ocp-open-closed-principle">OCP: Open Closed Principle</h3>
+<ul>
+<li>modules should be open for extension. Inheritance allows reuse of implementation:
+<ul>
+<li>representation</li>
+<li>operartion definitions</li>
+</ul>
+</li>
+<li>can add variables/methods and override methods <strong>without modifying the superclass</strong>.</li>
+<li>modules shoud be closed for modification (<code>private</code> or at least <code>protected</code>)</li>
+</ul>
+<h3 id="lsp-liskov-substitution-principle">LSP: Liskov Substitution Principle</h3>
+<ul>
+<li>U a subclass of T; U is a <code>subtype</code> of T, when in each place where an obj of type T can be used, you can substitute an object of type U, without affecting <em>correctness</em> of the program.</li>
+</ul>
+<h3 id="isp-interface-segregation-principle">ISP: Interface Segregation Principle</h3>
+<ul>
+<li>when designing a class for several clients with different needs, rather than loading the class with all methods that clients need -&gt; create specific interfaces for each kind of client</li>
+<li>make each client depedent on 'its' interface and implement all interfaces of class</li>
+</ul>
+<h3 id="dip-dependency-inversion-principle">DIP: Dependency Inversion Principle</h3>
+<ul>
+<li>if module A depends on module B:
+<ul>
+<li>A cannot be compiled/used without B</li>
+<li>This hinders testing and reuse of A</li>
+</ul>
+</li>
+<li>High level modules should not depend upon low-level modules. Both should depend upon <code>abstractions</code></li>
+<li>Abstractions should not depend upon details -&gt; details should depend upon abstractions</li>
+</ul>
+<h3 id="dry-dont-repeat-yourself">DRY: Don't Repeat Yourself</h3>
+<ul>
+<li>be dry like a well-done steak</li>
+</ul>
+<h2 id="mutable-vs-immutable-classes">Mutable vs Immutable classes</h2>
+<ul>
+<li>a class T is <code>immutable</code> when none of its methods modifies <code>this</code> or a parameter of type T (<strong>the state of the T object cannot change after construction</strong>)</li>
+<li>it is <code>mutable</code> otherwise</li>
+</ul>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>immutable objects help with reasoning and do not require cloning</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>less effiecient as you constantly need new objects (filling up memory)</li>
+</ul>
+<p><img src="assets/immutable.png" alt="Immutable vs mutable"></p>
+<h2 id="nested-classes">Nested classes</h2>
+<p>These come in 4 kinds:</p>
+<ol>
+<li>static member class (top-level class)</li>
+<li>non-static member class</li>
+<li>names local classes</li>
+<li>anonymous  class</li>
+</ol>
+<blockquote>
+<p><strong>The latter 3 are called inner classes. An inner class has access to the member of its outer classes</strong></p>
+</blockquote>
+<h3 id="inner-classes">Inner classes</h3>
+<p><span style="color:Green"><strong>Advantages:</strong></span></p>
+<ul>
+<li>keep things close together (logical grouping)</li>
+<li>encapsulation (decrease coupling)</li>
+<li>improved readability and maintainability of source code</li>
+</ul>
+<p><span style="color:Red"><strong>Disadvantages:</strong></span></p>
+<ul>
+<li>outer class becomes less readable</li>
+<li>anonymous classes: cannot define own constructor, can introduce extra methods</li>
+</ul>
+<p><img src="assets/nested-calsses.png" alt="nested classes"></p>
+<h2 id="generic-classes">Generic classes</h2>
+<ul>
+<li>a class whose definition involves one or more type parameters</li>
+<li>the paremeters abstract from concrete types, making the class more generally (re)usable</li>
+<li>improve type safety (compared to using <code>Object</code> as a concrete type)</li>
+</ul>
+<h2 id="swingworker">SwingWorker</h2>
+<h3 id="purpose">Purpose</h3>
+<ul>
+<li>Acts as a Facade for the Java Thread facilities.</li>
+<li>Makes it easy to run code in a background thread without blocking the main GUI thread.</li>
+</ul>
+<h3 id="the-main-steps">The main steps</h3>
+<ol>
+<li><code>Static aspect, declaration</code>. By subclassing <code>SwingWorker</code> and overriding the <code>doInBackground()</code> and <code>done()</code> methods</li>
+<li><code>Dynamic aspect, execution</code>. The resulting <code>SwingWorker</code> subclass must be instantiated for each run. The background thread is activated by calling <code>execute()</code>.</li>
+</ol>
+<h3 id="related-patterns">Related patterns</h3>
+<p><code>Template Method</code>:</p>
+<ul>
+<li>methods <code>execute()</code>, <code>publish()</code> and <code>get()</code> are template methods, holding the &quot;common&quot; code</li>
+<li>overridable methods such as <code>doInBackground()</code>, <code>process()</code>, <code>done()</code> are hook methods.</li>
+</ul>
+<p><code>Facade</code>:</p>
+<ul>
+<li>Swingworker provides a simplified interface for the Java thread library</li>
+</ul>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<ul>
+<li>A class C depends on a class D if class C cannot be compiled without having class D
+<ul>
+<li>Disadvantages:
+<ul>
+<li><code>Hinders verifiability</code>: C is harder to test because it must be used with D. That may be slow and expensive.</li>
+<li><code>Hinders maintainability</code>: when class D changes, one has to recompile and test class C as well</li>
+<li><code>Hinder reuse</code>: when reusing class C, you must reuse class D as well</li>
+</ul>
+</li>
+<li>How to avoid such dependencies?
+<ul>
+<li>Apply the <code>Dependency Inversion Principle</code>: Don't make a class C depend on a concrete class D, rather make them both depend on an abstraction
+<ul>
+<li>
+<ol>
+<li>Introduce an interface for class D</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Let class D implement that interface</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Make class C dependent on that interface</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>Let client of class C configure it at runtime to use class D (<code>Dependendcy Injection</code>)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="design-patterns">Design Patterns</h1>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li>Facilitate <code>reuse</code>
+<ul>
+<li>Design patterns enable design reuse</li>
+<li>This means looking for a routine design before resorting to the creation of an original design</li>
+</ul>
+</li>
+<li>Make <code>design easier</code>
+<ul>
+<li>Applying a pattern is easier than solving design problems from first principles</li>
+</ul>
+</li>
+<li>Capture <code>expertise</code> and facilitate its <code>dissemination</code>
+<ul>
+<li>Knowledge of DPs helps in becoming better at designing</li>
+</ul>
+</li>
+<li>Define a <code>shared vocabulary</code> for discussing design and architecture
+<ul>
+<li>Necessary for communication</li>
+</ul>
+</li>
+<li>Improve <code>ability to do original design</code>
+<ul>
+<li>Lead to solid understanding of fundamental design concepts and principles</li>
+</ul>
+</li>
+<li>Makes it easier to <code>learn class libraries</code> using DPS
+<ul>
+<li>DPs are common in libraries, so it's easier to get familiar with them</li>
+</ul>
+</li>
+</ul>
+<h2 id="iterator"><a href="https://refactoring.guru/design-patterns/iterator">Iterator</a></h2>
+<h3 id="intent">Intent</h3>
+<ul>
+<li>solves the problem of how to traverse the elements of a collection</li>
+<li>keeping client code loosely coupled from the collection object and traversal algorithm</li>
+</ul>
+<h3 id="solution">Solution</h3>
+<h4 id="iteratore">Iterator&lt;E&gt;</h4>
+<ul>
+<li>holds the state of one specific iteration over E</li>
+<li>cannot be reused after the iteration terminates (i.e. when <code>hasNext()</code> returns <code>false</code>)</li>
+</ul>
+<h4 id="iterablee">Iterable&lt;E&gt;</h4>
+<ul>
+<li>represents a collection over E that can be iterated with a for-each statement</li>
+<li>can be reused for multiple iterations</li>
+<li>works via its <code>iterator()</code> Factory Method that returns an <code>Iterator&lt;E&gt;</code></li>
+</ul>
+<p><img src="assets/iterator-uml.png" alt="iterator uml"></p>
+<blockquote>
+<ol>
+<li>The Iterator interface declares the operations required for traversing a collection: fetching the next element, retrieving the current position, restarting iteration, etc.</li>
+<li>Concrete Iterators implement specific algorithms for traversing a collection. The iterator object should track the traversal progress on its own. This allows several iterators to traverse the same collection independently of each other.</li>
+<li>The Collection interface declares one or multiple methods for getting iterators compatible with the collection. Note that the return type of the methods must be declared as the iterator interface so that the concrete collections can return various kinds of iterators.</li>
+<li>Concrete Collections return new instances of a particular concrete iterator class each time the client requests one.</li>
+<li>The Client works with both collections and iterators via their interfaces. This way the client isn’t coupled to concrete classes, allowing you to use various collections and iterators with the same client code.
+Typically, clients don’t create iterators on their own, but instead get them from collections. Yet, in certain cases, the client can create one directly; for example, when the client defines its own special iterator.</li>
+</ol>
+</blockquote>
+<h3 id="discussion">Discussion</h3>
+<h4 id="pros">Pros</h4>
+<ul>
+<li><code>Single Responsibility Principle</code>. You can clean up the client code and the collections by extracting bulky traversal algorithms into separate classes.</li>
+<li><code>Open/Closed Principle</code>. You can implement new types of collections and iterators and pass them to existing code without breaking anything.</li>
+<li>You can iterate over the same collection in parallel because each iterator object contains its own iteration state.</li>
+</ul>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>Overhead if the app only works with simple collections</li>
+<li>Using an iterator may be less efficient than going through elements of some specialized collections directly.</li>
+</ul>
+<h3 id="related-patterns">Related Patterns</h3>
+<ul>
+<li>You can use <code>Factory Method</code> along with <code>Iterator</code> to let collection subclasses return different types of iterators that are compatible with the collections.</li>
+<li>the <code>createIterator()</code> is a <code>Factory Method</code></li>
+</ul>
+<h2 id="strategy"><a href="https://refactoring.guru/design-patterns/strategy">Strategy</a></h2>
+<h3 id="introduction">Introduction</h3>
+<ul>
+<li>sometimes desirable to postpone algorithm selection until runtime</li>
+<li>the choice of algorithm might depend on factors not available at design time: nature of input, source of input, user preferences, etc.</li>
+<li>Components that postpone selection until runtime → good candidates for Strategy design patte</li>
+</ul>
+<h3 id="intent">Intent</h3>
+<ul>
+<li>Strategy defines a family of algorithms, encapsulating each one and makes them interchangeable</li>
+<li>Context can be modified without affecting the algorithms.</li>
+<li>Context isn’t responsible for selecting an appropriate algorithm -&gt; the client passes the desired strategy to the context</li>
+<li>Context works with all strategies through the same generic interface with a single method <code>execute()</code></li>
+<li>New algorithms can be added or existing ones modified without altering the context</li>
+</ul>
+<h3 id="solution">Solution</h3>
+<p><img src="assets/strategy-uml.png" alt="strategy uml"></p>
+<blockquote>
+<ol>
+<li>The Context maintains a reference to one of the concrete strategies and communicates with this object only via the strategy interface.</li>
+<li>The Strategy interface is common to all concrete strategies. It declares a method the context uses to execute a strategy.</li>
+<li>Concrete Strategies implement different variations of an algorithm the context uses.</li>
+<li>The context calls the execution method on the linked strategy object each time it needs to run the algorithm. The context doesn’t know what type of strategy it works with or how the algorithm is executed.</li>
+<li>The Client creates a specific strategy object and passes it to the context. The context exposes a setter which lets clients replace the strategy associated with the context at runtime.</li>
+</ol>
+</blockquote>
+<h3 id="discussion">Discussion</h3>
+<h4 id="anti-pattern">Anti-pattern</h4>
+<p><img src="assets/anti-strategy-uml.png" alt="anti strategy uml"></p>
+<p>In the anti-pattern of this DP, client/context declares and uses a variable of each concrete algorithm. This way the client/context <strong>depends</strong> on (cannot be compiled without) the concrete strategy classes.</p>
+<h4 id="pros">Pros</h4>
+<ul>
+<li>You can swap algorithms used inside an object at runtime.</li>
+<li>You can isolate the implementation details of an algorithm from the code that uses it.</li>
+<li>You can replace inheritance with composition.</li>
+<li><code>Open/Closed Principle</code>. You can introduce new strategies without having to change the context.</li>
+<li><code>Dependency Inversion Principle</code>. The client / context code and the concrete algorithm classes both depend on the abstract strategy interface -&gt; the dependency has been inverted.</li>
+</ul>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>Clients must be aware of the differences between strategies to be able to select a proper one
+<blockquote>
+<p>Mitigate this by having the context configure default strategy objects if no strategy is chosen</p>
+</blockquote>
+</li>
+<li>Creates useless overhead if you only have a couple of algorithms that rarely change</li>
+</ul>
+<h2 id="observer"><a href="https://refactoring.guru/design-patterns/observer">Observer</a></h2>
+<h3 id="intent">Intent</h3>
+<p>Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.</p>
+<p>It defines a one-to-many relation between:</p>
+<ul>
+<li>Subject object (publisher)</li>
+<li>Any number of observers (subscribers)</li>
+</ul>
+<h3 id="solution">Solution</h3>
+<p>Simply, the mechanism consists of:</p>
+<ol>
+<li>an array field for storing a list of references to subscriber objects</li>
+<li>several public methods which allow adding subscribers to and removing them from that list.</li>
+</ol>
+<p><img src="assets/observer-uml.png" alt="observer uml"></p>
+<blockquote>
+<ol>
+<li>The <code>Publisher</code> issues events of interest to other objects. These events occur when the publisher changes its state or executes some behaviors. Publishers contain a subscription infrastructure that lets new subscribers join and current subscribers leave the list.</li>
+<li>When a new event happens, the publisher goes over the subscription list and calls the notification method declared in the subscriber interface on each subscriber object.</li>
+<li>The <code>Subscriber</code> interface declares the notification interface. In most cases, it consists of a single <code>update</code> method. The method may have several parameters that let the publisher pass some event details along with the update.</li>
+<li>Concrete <code>Subscribers</code> perform some actions in response to notifications issued by the publisher. All of these classes must implement the same interface so the publisher isn’t coupled to concrete classes.</li>
+<li>Usually, subscribers need some contextual information to handle the update correctly. For this reason, publishers often pass some context data as arguments of the notification method. The publisher can pass itself as an argument, letting subscriber fetch any required data directly.</li>
+<li>The <code>Client</code> creates publisher and subscriber objects separately and then registers subscribers for publisher updates.</li>
+</ol>
+</blockquote>
+<h3 id="discussion">Discussion</h3>
+<p>The <code>update</code> method in the <code>Observer</code> interface could inclde a reference to the Subject as seen below:</p>
+<pre class="hljs"><code><div>  <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Observer</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Subject subject, Data data)</span></span>;
+  }
+</div></code></pre>
+<p>This is useful because an observer may be observing multiple subjects. The subject parameter identifies the object which has been updated, and can be used to pull more data from it.</p>
+<h4 id="pros">Pros</h4>
+<ul>
+<li><code>Open/Closed Principle</code>. You can introduce new subscriber classes without having to change the publisher’s code (and vice versa if there’s a publisher interface).</li>
+<li>You can establish relations between objects at runtime.</li>
+</ul>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>performance penalty because of all data transfers</li>
+<li>have to decide on how to transfer data:
+<ul>
+<li>push to Observers
+<ul>
+<li>Subject decides what data to push</li>
+<li>in most cases the pushed data is not needed and might affect performance</li>
+</ul>
+</li>
+<li>notify Observers + pull from Subject
+<ul>
+<li>observers decide on what data to pull</li>
+<li>might increase performance since only needed data is pulled</li>
+<li>Subject has to implement methods for data retrieval</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="command"><a href="https://refactoring.guru/design-patterns/command">Command</a></h2>
+<h3 id="introduction">Introduction</h3>
+<p>Command is a behavioral design pattern that turns a request into a stand-alone object that contains all information about the request. This transformation lets you pass requests as a method arguments, delay or queue a request’s execution, and support undoable operations.</p>
+<ul>
+<li>command object encapsulates one/more operations on one/more components</li>
+<li>when the user presses a button, teh button sends a message to a command objects, the command object calls actions on components</li>
+</ul>
+<h3 id="intent">Intent</h3>
+<ul>
+<li>Encapsulate a request as an object + decouples the request from clients invoking the request</li>
+<li>Encapsulating a request as an object allows executable code to be passed around and treated like any other object</li>
+<li>Commands become a convenient middle layer that reduces coupling between the GUI and business logic layers</li>
+<li>command objects implement the same abstract interface, so any button can be made to work with any command object</li>
+</ul>
+<p><img src="assets/command-idea.png" alt="GUI Objects delegate the work to commands"></p>
+<h3 id="structure">Structure</h3>
+<p><img src="assets/command-uml.png" alt="command uml"></p>
+<p>Summary:</p>
+<ul>
+<li>Command Pattern encapsulates a request</li>
+<li>Request is comprised of one/more operations being invoked on one/more existing receiver objects</li>
+</ul>
+<blockquote>
+<ol>
+<li>Invoker: initiate requests encapsulated in commands</li>
+<li>Command: an abstract interface allows concrete commands to be loosely coupled to clients</li>
+<li>ConcreteCommand: calls operations on receiver objects in order to carry out the encapsulated request</li>
+<li>Receiver: represents existing functionality</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol>
+<li>The Sender class (aka invoker) is responsible for initiating requests. This class must have a field for storing a reference to a command object. The sender triggers that command instead of sending the request directly to the receiver. Note that the sender isn’t responsible for creating the command object. Usually, it gets a pre-created command from the client via the constructor.</li>
+<li>The Command interface usually declares just a single method for executing the command.</li>
+<li>Concrete Commands implement various kinds of requests. A concrete command isn’t supposed to perform the work on its own, but rather to pass the call to one of the business logic objects. However, for the sake of simplifying the code, these classes can be merged.
+Parameters required to execute a method on a receiving object can be declared as fields in the concrete command. You can make command objects immutable by only allowing the initialization of these fields via the constructor.</li>
+<li>The Receiver class contains some business logic. Almost any object may act as a receiver. Most commands only handle the details of how a request is passed to the receiver, while the receiver itself does the actual work.</li>
+<li>The Client creates and configures concrete command objects. The client must pass all of the request parameters, including a receiver instance, into the command’s constructor. After that, the resulting command may be associated with one or multiple sender</li>
+</ol>
+</blockquote>
+<h3 id="discussion">Discussion</h3>
+<h4 id="applicability">Applicability</h4>
+<ul>
+<li>Use the Command pattern when you want to parametrize objects with operations</li>
+<li>Use the Command pattern when you want to queue operations, schedule their execution, or execute them remotely</li>
+<li>Use the Command pattern when you want to implement reversible operations.</li>
+</ul>
+<h4 id="pros">Pros</h4>
+<ul>
+<li><code>Single Responsibility Principle</code>. You can decouple classes that invoke operations from classes that perform these operations.</li>
+<li><code>Open/Closed Principle</code>. You can introduce new commands into the app without breaking existing client code.</li>
+<li><code>Dependency inversion</code>. Invoker depends only on abstract commands (!= concrete commands)</li>
+<li>You can implement undo/redo.</li>
+<li>You can implement deferred execution of operations</li>
+<li>You can assemble a set of simple commands into a complex one. -&gt; composite</li>
+</ul>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>The code may become more complicated since you’re introducing a whole new layer between senders and receivers.</li>
+<li>Multi-level Undo is more complicated</li>
+</ul>
+<h4 id="related-patterns">Related patterns</h4>
+<ul>
+<li>
+<p>Strategy Pattern</p>
+<p>May look similar because you can use both to parameterize an object with some action, but have very different intents:</p>
+<ul>
+<li>You can use Command to convert any operation into an object. The operation’s parameters become fields of that object. The conversion lets you defer execution of the operation, queue it, store the history of commands, send commands to remote services, etc.</li>
+<li>On the other hand, Strategy usually describes different ways of doing the same thing, letting you swap these algorithms within a single context class.</li>
+</ul>
+</li>
+</ul>
+<h2 id="singleton"><a href="https://refactoring.guru/design-patterns/singleton">Singleton</a></h2>
+<p>Singleton is a <code>creational design pattern</code> that lets you ensure that a class has only one instance, while providing a global access point to this instance.</p>
+<h3 id="intent">Intent</h3>
+<p>Singleton solves two problems, vilating the <code>Single Responsibility Principle</code>:</p>
+<ol>
+<li>Ensures that a class has just a single instance</li>
+<li>Provide a global access point to that instance</li>
+</ol>
+<h3 id="solution">Solution</h3>
+<ul>
+<li>Make the default constructor private, to prevent other objects from using the new operator with the Singleton class.</li>
+<li>Create a static creation method that acts as a constructor. Under the hood, this method calls the private constructor to create an object and saves it in a static field. All following calls to this method return the cached object.</li>
+</ul>
+<h3 id="structure">Structure</h3>
+<p><img src="assets/singleton-uml.png" alt="singleton uml"></p>
+<blockquote>
+<ol>
+<li>The Singleton class declares the static method getInstance that returns the same instance of its own class.
+The Singleton’s constructor should be hidden from the client code. Calling the getInstance method should be the only way of getting the Singleton object.</li>
+</ol>
+</blockquote>
+<p><strong>When it comes to multithreaded programs you should use double-checked locking sync</strong>.</p>
+<p><img src="assets/singleton-sync.png" alt="singleton multithreading"></p>
+<h3 id="discussion">Discussion</h3>
+<p><img src="assets/singleton-problem.png" alt="singleton problems"></p>
+<h4 id="applicability">Applicability</h4>
+<ul>
+<li>Use the Singleton pattern when a class in your program should have just a single instance available to all clients</li>
+<li>Use the Singleton pattern when you need stricter control over global variables</li>
+</ul>
+<h4 id="pros">Pros</h4>
+<ul>
+<li>You can be sure that a class has only a single instance</li>
+<li>You gain a global access point to that instance.</li>
+<li>The singleton object is initialized only when it’s requested for the first time.</li>
+</ul>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>Violates the <code>Single Responsibility Principle</code>. The pattern solves two problems at the time.</li>
+<li>The pattern requires special treatment in a multithreaded environment so that multiple threads won’t create a singleton object several times</li>
+<li>It may be difficult to unit test the client code of the Singleton because many test frameworks rely on inheritance when producing mock objects.</li>
+<li>Introduce hidden dependencies -&gt; weaken modularity</li>
+</ul>
+<h3 id="related-patterns">Related patterns</h3>
+<ul>
+<li>can be used with Abstract Factory -&gt; guaranteed at most 1 factory calss is created</li>
+<li>can be used with State -&gt; avoid recreating state classes when state switches</li>
+</ul>
+<h2 id="decorator"><a href="https://refactoring.guru/design-patterns/decorator">Decorator</a></h2>
+<p>Decorator is a <code>structural design</code> pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.</p>
+<blockquote>
+<p>It is about modifying behaviour while preserving interface</p>
+</blockquote>
+<h3 id="problem">Problem</h3>
+<p>Extend the behaviour of an existence class with inheritance:</p>
+<ul>
+<li>Inheritance is static. You can’t alter the behavior of an existing object at runtime. You can only replace the whole object with another one that’s created from a different subclass</li>
+<li>creates <code>compile-time structural relationships</code></li>
+<li>protected interface of base class is exposed to subcalsses -&gt; weakens the encapusaltion</li>
+<li>performs poorly when different combinations of features are created (see below)</li>
+</ul>
+<p><img src="assets/decorator-problem.png" alt="decorator combinations"></p>
+<h3 id="intent">Intent</h3>
+<ul>
+<li>provides an alternative to class inheritance for extending the behaviour of existing classes</li>
+<li>uses <code>object composition</code>
+<ul>
+<li>lightweight flexible approach to adding responsibilities to objects at runtime</li>
+<li>useful for adding different combinations and permutations of features</li>
+</ul>
+</li>
+</ul>
+<h3 id="solution">Solution</h3>
+<ul>
+<li>use <code>Aggregation</code> or <code>Composition</code>
+<ul>
+<li>Aggregation: object A contains objects B; B can live without A</li>
+<li>Composition: object A consists of objects B; A manages life cycle of B; B <strong>can't</strong> live w/out A</li>
+</ul>
+</li>
+</ul>
+<h3 id="structure">Structure</h3>
+<p><img src="assets/decorator-uml.png" alt="decorator uml"></p>
+<blockquote>
+<ol>
+<li>The Component declares the common interface for both wrappers and wrapped objects.</li>
+<li>Concrete Component is a class of objects being wrapped. It defines the basic behavior, which can be altered by decorators.</li>
+<li>The Base Decorator class has a field for referencing a wrapped object. The field’s type should be declared as the component interface so it can contain both concrete components and decorators. The base decorator delegates all operations to the wrapped object.</li>
+<li>Concrete Decorators define extra behaviors that can be added to components dynamically. Concrete decorators override methods of the base decorator and execute their behavior either before or after calling the parent method.</li>
+<li>The Client can wrap components in multiple layers of decorators, as long as it works with all objects via the component interface.</li>
+</ol>
+</blockquote>
+<h3 id="discussion">Discussion</h3>
+<h4 id="applicability">Applicability</h4>
+<ul>
+<li>when you need to be able to assign extra behaviors to objects at runtime without breaking the code that uses these objects.</li>
+<li>when it’s awkward or not possible to extend an object’s behavior using inheritance</li>
+</ul>
+<h4 id="pros">Pros</h4>
+<ul>
+<li><code>Single Responsibility Principle</code>. You can divide a monolithic class that implements many possible variants of behavior into several smaller classes.</li>
+<li>You can extend an object’s behavior without making a new subclass.</li>
+<li>You can add or remove responsibilities from an object at runtime.</li>
+<li>You can combine several behaviors by wrapping an object into multiple decorators.</li>
+</ul>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>It’s hard to remove a specific wrapper from the wrappers stack.</li>
+<li>It’s hard to implement a decorator in such a way that its behavior doesn’t depend on the order in the decorators stack.</li>
+<li>sers must contend with a large number of small classes even for routine tasks</li>
+</ul>
+<h3 id="related-patterns">Related Patterns</h3>
+<ul>
+<li><code>Decorator</code> and <code>Adapter</code> delegate requests to a wrapped object
+<ul>
+<li>Decorator adds new behaviour without changing the interface</li>
+<li>Adapter keeps the same basic behaviour, but changes the interface</li>
+</ul>
+</li>
+<li><code>Composite</code> and <code>Decorator</code> have similar structure diagrams since both rely on recursive composition to organize an open-ended number of objects.</li>
+<li><code>Decorator</code> lets you change the <em>skin</em> of an object, while <code>Strategy</code> lets you change the <em>guts</em> (lmao)</li>
+</ul>
+
+</body>
+</html>
